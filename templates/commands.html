@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+   <body>
+	
+      <h2 style = "text-align: center;">Commands</h2>
+
+      <form action = "http://localhost:8090/commands" method = post>
+      	 <fieldset>
+      	    <legend>Commands</legend>
+      	    {{ form.hidden_tag() }}
+      	    
+      	    <div style = font-size:20px; font-weight:bold; margin-left:150px;>
+      	       {{ form.Commands.label }} {{ form.Commands }}<br>
+      	       {{ form.Data.label }}<br>
+      	       {{ form.Data }}<br>
+      	       <a href = "http://localhost:8090/takephoto" >Take Photo</a> <br>
+      	       <a href = "http://localhost:8090/customcommand" >Custom command</a>  <br>
+      	       {{ form.submit }}
+      	    </div>
+      	    
+      	 </fieldset>
+      </form>
+      
+   </body>
+</html>   	    

@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+   <body>
+      <h2 style = "text-align: center;">Custom command</h2>
+      
+      <form action = "http://localhost:8090/customcommand" method = post>
+         <fieldset>
+            <legend>Custom command</legend>
+            {{ form.hidden_tag() }}
+            
+            <div style = font-size:20px; font-weight:bold; margin-left:150px;>
+               {{ form.Command.label }} <br>
+               {{ form.Command }} <br>
+               {{ form.Data.label }} <br>
+               {{ form.Data }} <br>
+               {{ form.submit }}
+            </div>
+         </fieldset>
+      </form>         
+   </body>
+</html>
