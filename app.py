@@ -4,29 +4,29 @@ import requests
 import json
 app = Flask(__name__)
 app.secret_key = 'development key'
-urlIrvas="https://fp550irvas3"
 @app.route('/commands', methods = ['GET', 'POST'])
 def commands():
     form = CommandsForm()
 
     if request.method == 'POST':
         Commands = request.form['Commands']
+        Subdomain = request.form['Subdomain']
         if Commands == "G11":
-            url = urlIrvas + ".localtunnel.me/g1?cmd=62"
+            url = "http://" + Subdomain + ".localtunnel.me/g1?cmd=62"
         elif Commands == "G12":
-            url = urlIrvas + ".localtunnel.me/g1?cmd=99"
+            url = "http://" + Subdomain + ".localtunnel.me/g1?cmd=99"
         elif Commands == "G13":
-            url = urlIrvas + ".localtunnel.me/g1?cmd=44&data="+request.form['Data']
+            url = "http://" + Subdomain + ".localtunnel.me/g1?cmd=44&data="+request.form['Data']
         elif Commands == "G14":
-            url = urlIrvas + ".localtunnel.me/g1?cmd=74"
+            url = "http://" + Subdomain + ".localtunnel.me/g1?cmd=74"
         elif Commands == "G15":
-            url = urlIrvas + ".localtunnel.me/g1?cmd=97"
+            url = "http://" + Subdomain + ".localtunnel.me/g1?cmd=97"
         elif Commands == "G16":
-            url = urlIrvas + ".localtunnel.me/g1?cmd=71"
+            url = "http://" + Subdomain + ".localtunnel.me/g1?cmd=71"
         elif Commands == "G17":
-            url = urlIrvas + ".localtunnel.me/g1?cmd=111&data=1"
+            url = "http://" + Subdomain + ".localtunnel.me/g1?cmd=111&data=1"
         elif Commands == "G18":
-            url = urlIrvas + ".localtunnel.me/g1?cmd=83"
+            url = "http://" + Subdomain + ".localtunnel.me/g1?cmd=83"
         response = requests.get(url)
         resp_dict=json.loads(response.text)
         """if type(resp_dict) is str:
@@ -40,7 +40,8 @@ def commands():
         return render_template('commands.html', form = form)
 @app.route('/takephoto')
 def takephoto():
-    url = urlIrvas + ".localtunnel.me/g21_cmd"
+    Subdomain = request.form['Subdomain']
+    url = "http://" + Subdomain + ".localtunnel.me/g21_cmd"
     response = requests.get(url)
     resp_dict=response.text
     print resp_dict
@@ -50,7 +51,8 @@ def customcommand():
     form = CustomCommandForm()
 
     if request.method == 'POST':
-        url = urlIrvas + ".localtunnel.me/g1?cmd="+request.form['Command']+"&data="+request.form['Data']
+        Subdomain = request.form['Subdomain']
+        url = "http://" + Subdomain +".localtunnel.me/g1?cmd="+request.form['Command']+"&data="+request.form['Data']
         response = requests.get(url)
         resp_dict=json.loads(response.text)
         """if type(resp_dict) is str:
