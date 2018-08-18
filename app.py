@@ -4,7 +4,7 @@ import requests
 import json
 app = Flask(__name__)
 app.secret_key = 'development key'
-
+urlIrvas="https://fp550irvas3"
 @app.route('/commands', methods = ['GET', 'POST'])
 def commands():
     form = CommandsForm()
@@ -12,21 +12,21 @@ def commands():
     if request.method == 'POST':
         Commands = request.form['Commands']
         if Commands == "G11":
-            url = "https://fp550irvas.localtunnel.me/g1?cmd=62"
+            url = urlIrvas + ".localtunnel.me/g1?cmd=62"
         elif Commands == "G12":
-            url = "https://fp550irvas.localtunnel.me/g1?cmd=99"
+            url = urlIrvas + ".localtunnel.me/g1?cmd=99"
         elif Commands == "G13":
-            url = "https://fp550irvas.localtunnel.me/g1?cmd=44&data="+request.form['Data']
+            url = urlIrvas + ".localtunnel.me/g1?cmd=44&data="+request.form['Data']
         elif Commands == "G14":
-            url = "https://fp550irvas.localtunnel.me/g1?cmd=74"
+            url = urlIrvas + ".localtunnel.me/g1?cmd=74"
         elif Commands == "G15":
-            url = "https://fp550irvas.localtunnel.me/g1?cmd=97"
+            url = urlIrvas + ".localtunnel.me/g1?cmd=97"
         elif Commands == "G16":
-            url = "https://fp550irvas.localtunnel.me/g1?cmd=71"
+            url = urlIrvas + ".localtunnel.me/g1?cmd=71"
         elif Commands == "G17":
-            url = "https://fp550irvas.localtunnel.me/g1?cmd=111&data=1"
+            url = urlIrvas + ".localtunnel.me/g1?cmd=111&data=1"
         elif Commands == "G18":
-            url = "https://fp550irvas.localtunnel.me/g1?cmd=83"
+            url = urlIrvas + ".localtunnel.me/g1?cmd=83"
         response = requests.get(url)
         resp_dict=json.loads(response.text)
         """if type(resp_dict) is str:
@@ -40,7 +40,7 @@ def commands():
         return render_template('commands.html', form = form)
 @app.route('/takephoto')
 def takephoto():
-    url = "http://fp550irvas.localtunnel.me/g21_cmd"
+    url = urlIrvas + ".localtunnel.me/g21_cmd"
     response = requests.get(url)
     resp_dict=response.text
     print resp_dict
@@ -50,7 +50,7 @@ def customcommand():
     form = CustomCommandForm()
 
     if request.method == 'POST':
-        url = "https://fp550irvas.localtunnel.me/g1?cmd="+request.form['Command']+"&data="+request.form['Data']
+        url = urlIrvas + ".localtunnel.me/g1?cmd="+request.form['Command']+"&data="+request.form['Data']
         response = requests.get(url)
         resp_dict=json.loads(response.text)
         """if type(resp_dict) is str:
@@ -63,4 +63,5 @@ def customcommand():
     elif request.method == 'GET':
         return render_template('customcommand.html', form = form)
 if __name__ == '__main__':
-    app.run(debug = True,port=8090)
+    #app.run(debug = True,port=8090)
+    app.run(port=8090)
