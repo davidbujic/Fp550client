@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+   <body>
+      <h2 style = "text-align: center;">G31</h2>
+
+      <form action = "http://localhost:8090/g31" method = post>
+         <fieldset>
+            <legend>G31</legend>
+            {{ form.hidden_tag() }}
+
+            <div style = font-size:20px; font-weight:bold; margin-left:150px;>
+               {{ form.Data.label }} <br>
+               {{ form.Data }} <br>
+               {{ form.Subdomain.label }} <br>
+      	       {{ form.Subdomain }} <br>
+               {{ form.submit }}
+            </div>
+         </fieldset>
+      </form>
+   </body>
+</html>
