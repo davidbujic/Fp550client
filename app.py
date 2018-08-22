@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, flash, redirect
-from forms import CommandsForm, CustomCommandForm
+from flask import Flask, render_template, request, redirect
+from forms import CommandsForm, CustomCommandForm, G31Form
 import requests
 import json
 app = Flask(__name__)
@@ -43,7 +43,7 @@ def takephoto():
     Subdomain = request.form['Subdomain']
     url = "http://" + Subdomain + ".localtunnel.me/g21_cmd"
     response = requests.get(url)
-    resp_dict=response.text
+    resp_dict = response.text
     print resp_dict
     return redirect(resp_dict[1:-2])
 @app.route('/customcommand', methods = ['GET', 'POST'])
@@ -64,6 +64,19 @@ def customcommand():
         return render_template('success.html', Commands = resp_dict['recv_pck_Data'])
     elif request.method == 'GET':
         return render_template('customcommand.html', form = form)
+@app.route('/g31', methods = ['GET', 'POST'])
+def g31():
+    form = G31Form()
+
+    if request.method == 'POST':
+        Subdomain = request.form['Subdomain']
+        url = "http://" + Subdomain + ".localtunnel.me/g31_cmd"
+        response = requests.post(url)
+        resp_dict = response.text
+        data = request.form['Data']
+        return render_template('success.html', Commands = data)
+    elif request.method == 'GET':
+        return render_template('g31.html', form = form)
 if __name__ == '__main__':
     #app.run(debug = True,port=8090)
     app.run(port=8090)

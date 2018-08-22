@@ -10,3 +10,7 @@ class CustomCommandForm(Form):
     Command = IntegerField('Command')
     Data = TextField('Data')
     submit = SubmitField('Send')
+class G31Form(Form):
+    Data = TextField('Data')
+    Subdomain = TextField('Subdomain')
+    submit = SubmitField('Send')
