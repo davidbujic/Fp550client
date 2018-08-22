@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+   <body>
+      <h2 style = "text-align: center;">Take photo</h2>
+
+      <form action = "http://localhost:8090/takephoto" method = post>
+         <fieldset>
+            <legend>Take photo</legend>
+            {{ form.hidden_tag() }}
+
+            <div style = font-size:20px; font-weight:bold; margin-left:150px;>
+               {{ form.Subdomain.label }} <br>
+      	       {{ form.Subdomain }} <br>
+               {{ form.submit }}
+            </div>
+         </fieldset>
+      </form>
+   </body>
+</html>
