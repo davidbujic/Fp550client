@@ -6,6 +6,9 @@ class CommandsForm(Form):
     Data = TextField('Data')
     Subdomain = TextField('Subdomain')
     submit = SubmitField("Send Request")
+class TakePhotoForm(Form):
+    Subdomain = TextField('Subdomain')
+    submit = SubmitField('Send')
 class CustomCommandForm(Form):
     Command = IntegerField('Command')
     Data = TextField('Data')
