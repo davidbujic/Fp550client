@@ -75,11 +75,10 @@ def g31():
 
     if request.method == 'POST':
         Subdomain = request.form['Subdomain']
-        url = "http://" + Subdomain + ".localtunnel.me/g31_cmd"
-        response = requests.post(url)
-        resp_dict = response.text
+        url = "http://" + Subdomain + ".localtunnel.me/g31"
         data = request.form['Data']
-        return render_template('success.html', Commands = data)
+        g31 = requests.post(url = url, data = data)
+        return render_template('success.html', Commands = g31)
     elif request.method == 'GET':
         return render_template('g31.html', form = form)
 if __name__ == '__main__':
